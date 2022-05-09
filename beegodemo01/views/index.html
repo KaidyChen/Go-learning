@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.title}}</title>
+</head>
+<body>
+{{template "/public/header.html" .}}
+<h2>1.模板中绑定基础数据 字符串 数值 布尔值</h2>
+<p>{{.Email}}</p>
+<p>{{.num}}</p>
+<p>{{.flag}}</p>
+<br>
+<h2>2.模板中绑定结构体数据</h2>
+<p>{{.product.Title}}</p>
+<p>{{.product.Content}}</p>
+<br>
+<h2>3.模板中定义变量</h2>
+{{$myparam := .title}}
+<p>{{$myparam}}</p>
+<br>
+<h2>4.模板循环遍历切片(重点)</h2>
+<ul>
+    {{range $key,$val := .sliceList}}
+    <li>{{$key}}----{{$val}}</li>
+    {{end}}
+</ul>
+<br>
+<h2>5.模板循环遍历map</h2>
+<ul>
+    {{range $key,$val := .userinfo}}
+    <li>{{$key}}----{{$val}}</li>
+    {{end}}
+</ul>
+<br>
+<h2>6.模板循环遍历结构体切片(用的最多)</h2>
+<ul>
+    {{range $key, $val := .productList}}
+    <li>{{$val.Title}}---{{$val.Content}}</li>
+    {{end}}
+</ul>
+<br>
+<h2>7.模板中进行条件判断</h2>
+{{if .isLogin}}
+<p>isLogin等于true</p>
+{{end}}
+
+{{if .isLogin}}
+<p>isLogin等于true</p>
+{{else}}
+<p>isLogin等于false</p>
+{{end}}
+<br>
+<h2>8.模板中进行if条件判断</h2>
+{{if eq .a .b}}
+<p>a等于b</p>
+{{else}}
+<p>a不等于b</p>
+{{end}}
+<br>
+<h2>9.define内部自定义模板</h2>
+{{define "tpl1"}}
+<h4>这是一个自定义的代码块</h4>
+<p>代码详情1</p>
+<p>代码详情2</p>
+<p>代码详情3</p>
+{{end}}
+
+
+<div>
+    {{template "tpl1" .}}
+</div>
+<hr>
+<div>
+    {{template "tpl1" .}}
+</div>
+
+<br>
+<h2>10.define外部自定义模板</h2>
+{{template "/public/footer.html" .}}
+</body>
+</html>

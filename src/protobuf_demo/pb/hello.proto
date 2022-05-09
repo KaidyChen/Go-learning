@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package="./;hello_proto";
+
+package hello_proto;
+
+message Hello{
+    string username = 1;
+    int32 age = 2;
+    string msg = 3;
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+<h2>选择上传文件</h2>
+<form action="/upload/doUpload" method="post" enctype="multipart/form-data">
+    标题:<input type="text" name="title"/> <br><br>
+    内容:<input type="text" name="content"/> <br><br>
+    文件:<input type="file" name="pic"/> <br><br>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

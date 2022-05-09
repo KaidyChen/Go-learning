@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+<!-- 直接引用   <link rel="stylesheet" href="/static/css/index.css">-->
+    {{assets_css "/static/css/index.css"}}
+<!--    <script src="/static/js/index.js"></script>-->
+<!--    {{assets_js "/static/js/index.js"}}-->
+</head>
+<body>
+{{template "/public/header.html" .}}
+<p>
+    {{.now}}
+</p>
+<p>
+    {{date .now "Y-m-d H:i:s"}}
+</p>
+
+<hr>
+<p>
+    {{.list}}
+</p>
+<p>
+    {{substr .list 0 4}}
+</p>
+<p>
+    {{substr .list 2 2}}
+</p>
+<hr>
+<p>
+    {{.html}}
+</p>
+<p>
+    {{html2str .html}}
+</p>
+{{str2html .html}}
+<hr>
+<h2>获取配置文件conf里面的内容:</h2>
+<p>{{config "String" "appname" ""}}</p>
+<p>{{config "String" "httpport" ""}}</p>
+<hr>
+<h2>获取map对象数据</h2>
+<p>
+    {{map_get .userinfo "username"}}
+</p>
+<p>
+    {{map_get .userinfo "grade" "数学"}}
+</p>
+<hr>
+<h2>调用自定义模板函数</h2>
+<p>{{.unix}}</p>
+<p>{{.unix | unixToDate}}</p>
+<hr>
+<p>现在时间: {{.Time}}</p>
+{{template "/public/footer.html"}}
+<hr>
+<p>123456的md5密文:{{.md5}}</p>
+<hr>
+<p>cookie里面的数据: {{.cookie}}</p>
+<p>获取session数据: {{.session}}</p>
+</body>
+</html>
